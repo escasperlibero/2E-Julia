@@ -1,0 +1,36 @@
+function insertionSort(vetor) {
+  const tamanho = vetor.length;
+
+  for (let i = 1; i < tamanho; i++) {
+    const chave = vetor[i];
+    let j = i - 1;
+
+    // Mover elementos do vetor[0..i-1] que são maiores que a chave
+    // para uma posição à frente de sua posição atual
+    while (j >= 0 && vetor[j] > chave) {
+      vetor[j + 1] = vetor[j];
+      j = j - 1;
+    }
+    vetor[j + 1] = chave;
+  }
+}
+
+// Criar vetor com números ímpares em ordem crescente
+const tamanhoVetor = 30;
+const vetor = [];
+for (let i = 1; i <= tamanhoVetor * 2; i += 2) {
+  vetor.push(i);
+}
+
+// Embaralhar o vetor para tornar a ordem inicial não ordenada
+for (let i = vetor.length - 1; i > 0; i--) {
+  const j = Math.floor(Math.random() * (i + 1));
+  [vetor[i], vetor[j]] = [vetor[j], vetor[i]];
+}
+
+console.log("Vetor Original:", vetor);
+
+// Chamar a função de ordenação
+insertionSort(vetor);
+
+console.log("Vetor Ordenado:", vetor);
